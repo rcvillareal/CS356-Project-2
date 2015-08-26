@@ -1,0 +1,50 @@
+/**
+ * Rodney Villareal
+ * CS 356 Project 2
+ * Small non gui driver to check if implementation 
+ * is correct.
+ */
+
+public class NonGUIDriver {
+	public static void main(String[] args) {
+		User user1 = new User("Rodney");
+		User user2 = new User("Brian");
+		User user3 = new User("Sarah");
+		User user4 = new User("John");
+		User user5 = new User("Ashley");
+		User user6 = new User("Sandy");
+		
+		Group root = new Group("Root");
+		root.add(user1);
+		root.add(user2);
+		root.add(user3);
+		root.add(user4);
+		root.add(user5);
+		root.add(user6);
+		
+		Component group1 = new Group("Group1");
+		group1.add(user1);
+		group1.add(user5);
+		group1.add(user6);
+		
+		user1.follow(user2);
+		user1.follow(user4);
+		user1.follow(user5);
+		user1.follow(user6);
+		
+		user1.tweet("Hello!");
+		user2.tweet("Good morning!");
+		user3.tweet("I am tired...");
+		user4.tweet("What should I do today?");
+		user5.tweet("I am having so much fun!");
+		user6.tweet("I can't wait to get off work!");
+		user5.tweet("Goodnight everyone.");
+		user6.tweet("Movie time!");
+		
+		Visitor visitor = new Statistic();
+		System.out.println("users: " + visitor.getSum(user1));
+		System.out.println("groups: " + visitor.getSum(root));
+		System.out.println("messages: " + visitor.getSum(new Messages()));
+		
+	}
+}
